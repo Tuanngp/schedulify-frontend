@@ -327,7 +327,7 @@ export default function DashboardPage() {
                         <Heart className="h-4 w-4 text-pink-500" />
                         <span className="text-sm text-gray-500">24</span>
                       </div>
-                      <Button variant="ghost" size="sm" className="h-8 text-blue-600 hover:bg-blue-50">
+                      <Button variant="ghost" size="sm" className="h-8 text-white hover:bg-blue-50">
                         Xem chi tiết
                       </Button>
                     </div>

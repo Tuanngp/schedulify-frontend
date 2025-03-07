@@ -8,31 +8,7 @@ interface MainLayoutProps {
   children: React.ReactNode;
 }
 
-const navigation = [
-  {
-    name: "Dashboard",
-    href: "/dashboard",
-    icon: LayoutGrid,
-  },
-  {
-    name: "Lịch đăng bài",
-    href: "/schedule",
-    icon: Calendar,
-  },
-  {
-    name: "Phân tích",
-    href: "/analytics",
-    icon: BarChart3,
-  },
-  {
-    name: "Cài đặt",
-    href: "/settings",
-    icon: Settings,
-  },
-];
-
 export function MainLayout({ children }: MainLayoutProps) {
-  const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
 
   return (
     <div className="min-h-screen bg-background">

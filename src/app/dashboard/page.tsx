@@ -1,3 +1,5 @@
+"use client";
+
 import { MainLayout } from "@/components/layouts/main-layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -131,4 +133,4 @@ export default function DashboardPage() {
       </div>
     </MainLayout>
   );
-} 
+}

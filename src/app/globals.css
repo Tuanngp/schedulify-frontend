@@ -16,17 +16,26 @@
     --primary: 221.2 83.2% 53.3%;
     --primary-foreground: 210 40% 98%;
  
-    --secondary: 160 84% 39%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 182 84% 26%;
+    --secondary-foreground: 210 40% 98%;
  
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
  
     --accent: 262.1 83.3% 57.8%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent-foreground: 210 40% 98%;
  
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
+
+    --success: 142 84% 29%;
+    --success-foreground: 210 40% 98%;
+
+    --warning: 38 92% 42%;
+    --warning-foreground: 210 40% 98%;
+
+    --info: 221.2 83.2% 53.3%;
+    --info-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
@@ -48,17 +57,26 @@
     --primary: 217.2 91.2% 59.8%;
     --primary-foreground: 222.2 47.4% 11.2%;
  
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 182 84% 26%;
     --secondary-foreground: 210 40% 98%;
  
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
  
-    --accent: 217.2 32.6% 17.5%;
+    --accent: 262.1 83.3% 57.8%;
     --accent-foreground: 210 40% 98%;
  
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
+
+    --success: 142 84% 29%;
+    --success-foreground: 210 40% 98%;
+
+    --warning: 38 92% 42%;
+    --warning-foreground: 210 40% 98%;
+
+    --info: 221.2 83.2% 53.3%;
+    --info-foreground: 210 40% 98%;
  
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
@@ -151,19 +169,35 @@
   }
 
   .btn-primary {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90;
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm shadow-primary/25;
   }
 
   .btn-secondary {
-    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90 shadow-sm shadow-secondary/25;
+  }
+
+  .btn-accent {
+    @apply bg-accent text-accent-foreground hover:bg-accent/90 shadow-sm shadow-accent/25;
+  }
+
+  .btn-success {
+    @apply bg-success text-success-foreground hover:bg-success/90 shadow-sm shadow-success/25;
+  }
+
+  .btn-warning {
+    @apply bg-warning text-warning-foreground hover:bg-warning/90 shadow-sm shadow-warning/25;
+  }
+
+  .btn-error {
+    @apply bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-sm shadow-destructive/25;
   }
 
   .btn-outline {
-    @apply border border-input bg-background hover:bg-accent hover:text-accent-foreground;
+    @apply border-2 border-input bg-background hover:bg-accent/10 hover:border-accent text-foreground;
   }
 
   .btn-ghost {
-    @apply hover:bg-accent hover:text-accent-foreground;
+    @apply hover:bg-accent/10 text-foreground hover:text-accent;
   }
 
   .badge {
@@ -172,14 +206,30 @@
   }
 
   .badge-primary {
-    @apply bg-primary text-primary-foreground hover:bg-primary/80;
+    @apply bg-primary/10 text-primary border-primary/20 hover:bg-primary/20;
   }
 
   .badge-secondary {
-    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+    @apply bg-secondary/10 text-secondary border-secondary/20 hover:bg-secondary/20;
+  }
+
+  .badge-accent {
+    @apply bg-accent/10 text-accent border-accent/20 hover:bg-accent/20;
+  }
+
+  .badge-success {
+    @apply bg-success/10 text-success border-success/20 hover:bg-success/20;
+  }
+
+  .badge-warning {
+    @apply bg-warning/10 text-warning border-warning/20 hover:bg-warning/20;
+  }
+
+  .badge-error {
+    @apply bg-destructive/10 text-destructive border-destructive/20 hover:bg-destructive/20;
   }
 
   .badge-outline {
-    @apply text-foreground border-border hover:bg-accent hover:text-accent-foreground;
+    @apply text-foreground border-input hover:bg-accent/10 hover:text-accent hover:border-accent;
   }
 }

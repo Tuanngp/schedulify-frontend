@@ -193,11 +193,7 @@ export function MarketingLayout({ children }: MarketingLayoutProps) {
                 <li>
                   <span className="font-medium">Địa chỉ:</span>
                   <p className="mt-1">
-                    Tầng 15, Tòa nhà ABC
-                    <br />
-                    123 Đường XYZ, Quận 1
-                    <br />
-                    TP.HCM
+                    FPT University Da Nang
                   </p>
                 </li>
               </ul>

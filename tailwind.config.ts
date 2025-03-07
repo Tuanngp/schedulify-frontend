@@ -17,72 +17,76 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // Brand colors
+        // Brand colors - Đã điều chỉnh để dịu và hài hòa hơn
         primary: {
-          DEFAULT: "#3B82F6",
+          DEFAULT: "#2563EB", // Điều chỉnh tone xanh dương dịu hơn
           50: "#EFF6FF",
           100: "#DBEAFE",
           200: "#BFDBFE",
           300: "#93C5FD",
           400: "#60A5FA",
-          500: "#3B82F6",
-          600: "#2563EB",
-          700: "#1D4ED8",
-          800: "#1E40AF",
-          900: "#1E3A8A",
+          500: "#2563EB", // Màu chính
+          600: "#1D4ED8",
+          700: "#1E40AF",
+          800: "#1E3A8A",
+          900: "#172554",
         },
         secondary: {
-          DEFAULT: "#10B981",
-          50: "#ECFDF5",
-          100: "#D1FAE5",
-          200: "#A7F3D0",
-          300: "#6EE7B7",
-          400: "#34D399",
-          500: "#10B981",
-          600: "#059669",
-          700: "#047857",
-          800: "#065F46",
-          900: "#064E3B",
+          DEFAULT: "#0F766E", // Xanh lục đậm hơn để tăng contrast
+          50: "#F0FDFA",
+          100: "#CCFBF1",
+          200: "#99F6E4",
+          300: "#5EEAD4",
+          400: "#2DD4BF",
+          500: "#14B8A6",
+          600: "#0F766E",
+          700: "#0F766E",
+          800: "#115E59",
+          900: "#134E4A",
         },
         accent: {
-          DEFAULT: "#8B5CF6",
+          DEFAULT: "#6D28D9", // Tím đậm hơn để tăng contrast
           50: "#F5F3FF",
           100: "#EDE9FE",
           200: "#DDD6FE",
           300: "#C4B5FD",
           400: "#A78BFA",
           500: "#8B5CF6",
-          600: "#7C3AED",
-          700: "#6D28D9",
-          800: "#5B21B6",
+          600: "#6D28D9",
+          700: "#5B21B6",
+          800: "#4C1D95",
           900: "#4C1D95",
         },
-        // Semantic colors
+        // Semantic colors với contrast ratio tốt hơn
         success: {
-          DEFAULT: "#10B981",
+          DEFAULT: "#059669",
           50: "#ECFDF5",
           100: "#D1FAE5",
           background: "#ECFDF5",
+          text: "#065F46", // Thêm màu text tương phản
         },
         warning: {
-          DEFAULT: "#F59E0B",
+          DEFAULT: "#D97706",
           50: "#FFFBEB",
           100: "#FEF3C7",
           background: "#FFFBEB",
+          text: "#92400E", // Thêm màu text tương phản
         },
         error: {
-          DEFAULT: "#EF4444",
+          DEFAULT: "#DC2626",
           50: "#FEF2F2",
           100: "#FEE2E2",
           background: "#FEF2F2",
+          text: "#991B1B", // Thêm màu text tương phản
         },
         info: {
-          DEFAULT: "#3B82F6",
+          DEFAULT: "#2563EB",
           50: "#EFF6FF",
           100: "#DBEAFE",
           background: "#EFF6FF",
+          text: "#1E40AF", // Thêm màu text tương phản
         },
-        // Neutral colors
+        // Neutral colors với contrast tốt hơn
         gray: {
           50: "#F9FAFB",
           100: "#F3F4F6",
@@ -95,7 +99,19 @@ const config: Config = {
           800: "#1F2937",
           900: "#111827",
         },
-        background: "hsl(var(--background))",
+        // Text colors với contrast ratio đảm bảo
+        text: {
+          primary: "#111827", // Text chính
+          secondary: "#4B5563", // Text phụ
+          disabled: "#9CA3AF", // Text disabled
+          inverse: "#FFFFFF", // Text trên nền tối
+        },
+        // Background colors
+        background: {
+          primary: "#FFFFFF",
+          secondary: "#F9FAFB",
+          tertiary: "#F3F4F6",
+        },
         foreground: "hsl(var(--foreground))",
         card: "hsl(var(--card))",
         "card-foreground": "hsl(var(--card-foreground))",

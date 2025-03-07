@@ -203,7 +203,7 @@ export default function HomePage() {
   if (isLoading) {
     return (
       <div className="flex h-screen items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary/30 border-t-primary" />
       </div>
     );
   }
@@ -220,7 +220,7 @@ export default function HomePage() {
           <Link href="/auth/register">
             <Button
               size="lg"
-              className="h-12 px-8 text-lg bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-300 hover:scale-105"
+              className="h-12 px-8 text-lg bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all duration-300 hover:scale-105"
             >
               Dùng thử miễn phí
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -230,7 +230,7 @@ export default function HomePage() {
             <Button
               variant="outline"
               size="lg"
-              className="h-12 px-8 text-lg group border-2 hover:bg-accent/10 hover:border-accent text-foreground transition-all duration-300 hover:scale-105"
+              className="h-12 px-8 text-lg border-2 border-input hover:bg-accent/10 hover:border-accent text-foreground transition-all duration-300 hover:scale-105"
             >
               Đăng nhập
               <ArrowRight className="ml-2 h-4 w-4 group-hover:text-accent transition-colors" />
@@ -241,7 +241,7 @@ export default function HomePage() {
         <Link href="/dashboard">
           <Button
             size="lg"
-            className="h-12 px-8 text-lg bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-300 hover:scale-105"
+            className="h-12 px-8 text-lg bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all duration-300 hover:scale-105"
           >
             Vào Dashboard
             <ArrowRight className="ml-2 h-5 w-5" />

@@ -1,5 +1,8 @@
 "use client";
 
+import { useAuth } from "@/hooks/use-auth";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { MarketingLayout } from "@/components/layouts/marketing-layout";
 import { Button } from "@/components/ui/button";
@@ -188,6 +191,99 @@ const testimonials = [
 ];
 
 export default function HomePage() {
+  const { isAuthenticated, isLoading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isAuthenticated && !isLoading) {
+      router.push("/dashboard");
+    }
+  }, [isAuthenticated, isLoading, router]);
+
+  if (isLoading) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+      </div>
+    );
+  }
+
+  const renderCTAButtons = () => (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.4, duration: 0.5 }}
+      className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
+    >
+      {!isAuthenticated ? (
+        <>
+          <Link href="/auth/register">
+            <Button
+              size="lg"
+              className="h-12 px-8 text-lg bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-300 hover:scale-105"
+            >
+              Dùng thử miễn phí
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </Link>
+          <Link href="/auth/login">
+            <Button
+              variant="outline"
+              size="lg"
+              className="h-12 px-8 text-lg group border-2 hover:bg-accent/10 hover:border-accent text-foreground transition-all duration-300 hover:scale-105"
+            >
+              Đăng nhập
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:text-accent transition-colors" />
+            </Button>
+          </Link>
+        </>
+      ) : (
+        <Link href="/dashboard">
+          <Button
+            size="lg"
+            className="h-12 px-8 text-lg bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-300 hover:scale-105"
+          >
+            Vào Dashboard
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
+        </Link>
+      )}
+    </motion.div>
+  );
+
+  const renderCTASection = () => (
+    <section className="relative border-y bg-gradient-to-b from-muted/50 via-background to-muted/50 py-20 md:py-32">
+      <div className="container relative z-10">
+        <div className="mx-auto max-w-4xl rounded-3xl bg-gradient-to-r from-primary via-accent to-secondary p-[2px]">
+          <div className="relative rounded-3xl bg-gradient-to-b from-background via-background/95 to-background/90 px-8 py-16 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 md:px-12 lg:px-16 border border-accent/10">
+            <div className="relative z-10 text-center">
+              <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
+                Bắt đầu tối ưu social media của bạn
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-lg text-foreground/80">
+                {isAuthenticated 
+                  ? "Quản lý mạng xã hội của bạn ngay bây giờ"
+                  : "Đăng ký ngay hôm nay và trải nghiệm sức mạnh của Schedulify"}
+              </p>
+              <div className="mt-10">
+                <Link href={isAuthenticated ? "/dashboard" : "/auth/register"}>
+                  <Button
+                    size="lg"
+                    className="h-12 px-8 text-lg bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-primary-foreground"
+                  >
+                    {isAuthenticated ? "Vào Dashboard" : "Dùng thử miễn phí"}
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="absolute left-1/2 top-1/2 -z-10 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-primary/5 via-accent/5 to-secondary/5 blur-3xl" />
+    </section>
+  );
+
   return (
     <MarketingLayout>
       {/* Hero Section */}
@@ -219,30 +315,7 @@ export default function HomePage() {
               Tự động hóa và tối ưu việc đăng bài đa kênh. Tiết kiệm thời gian và
               tăng hiệu quả với công nghệ AI.
             </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.5 }}
-              className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
-            >
-              <Link href="/auth/signup">
-                <Button
-                  size="lg"
-                  className="h-12 px-8 text-lg bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-primary-foreground shadow-lg shadow-primary/25 transition-all duration-300 hover:scale-105"
-                >
-                  Dùng thử miễn phí
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-              <Button
-                variant="outline"
-                size="lg"
-                className="h-12 px-8 text-lg group border-2 hover:bg-accent/10 hover:border-accent text-foreground transition-all duration-300 hover:scale-105"
-              >
-                <Play className="mr-2 h-4 w-4 group-hover:text-accent transition-colors" />
-                Xem demo
-              </Button>
-            </motion.div>
+            {renderCTAButtons()}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -585,35 +658,7 @@ export default function HomePage() {
         <div className="absolute left-0 top-1/2 -z-10 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-gradient-to-r from-primary/5 to-transparent blur-3xl" />
       </section>
 
-      {/* CTA Section */}
-      <section className="relative border-y bg-gradient-to-b from-muted/50 via-background to-muted/50 py-20 md:py-32">
-        <div className="container relative z-10">
-          <div className="mx-auto max-w-4xl rounded-3xl bg-gradient-to-r from-primary via-accent to-secondary p-[2px]">
-            <div className="relative rounded-3xl bg-gradient-to-b from-background via-background/95 to-background/90 px-8 py-16 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 md:px-12 lg:px-16 border border-accent/10">
-              <div className="relative z-10 text-center">
-                <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
-                  Bắt đầu tối ưu social media của bạn
-                </h2>
-                <p className="mx-auto mt-4 max-w-xl text-lg text-foreground/80">
-                  Đăng ký ngay hôm nay và trải nghiệm sức mạnh của Schedulify
-                </p>
-                <div className="mt-10">
-                  <Link href="/auth/signup">
-                    <Button
-                      size="lg"
-                      className="h-12 px-8 text-lg bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-primary-foreground"
-                    >
-                      Dùng thử miễn phí
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="absolute left-1/2 top-1/2 -z-10 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-primary/5 via-accent/5 to-secondary/5 blur-3xl" />
-      </section>
+      {renderCTASection()}
     </MarketingLayout>
   );
 }

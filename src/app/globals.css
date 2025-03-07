@@ -70,31 +70,49 @@
   }
 
   body {
-    @apply bg-background text-foreground min-h-screen;
+    @apply bg-background text-foreground min-h-screen antialiased selection:bg-primary/20;
   }
 
   h1 {
-    @apply text-4xl font-bold text-foreground;
+    @apply text-4xl font-bold text-foreground tracking-tight lg:text-5xl;
   }
 
   h2 {
-    @apply text-3xl font-semibold text-foreground;
+    @apply text-3xl font-semibold text-foreground tracking-tight lg:text-4xl;
   }
 
   h3 {
-    @apply text-2xl font-semibold text-foreground;
+    @apply text-2xl font-semibold text-foreground tracking-tight lg:text-3xl;
+  }
+
+  h4 {
+    @apply text-xl font-semibold text-foreground tracking-tight lg:text-2xl;
   }
 
   p {
-    @apply text-base text-foreground;
+    @apply text-base text-foreground/90 leading-relaxed;
   }
 
   a {
-    @apply text-primary hover:text-primary/80 transition-colors;
+    @apply text-primary hover:text-primary/80 transition-colors duration-200 underline-offset-4 hover:underline;
   }
 
   button {
-    @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-colors;
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 
+    active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50;
+  }
+
+  input, textarea {
+    @apply bg-background border border-input rounded-md px-3 py-2 text-sm
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50
+    disabled:opacity-50 disabled:cursor-not-allowed placeholder:text-muted-foreground;
+  }
+
+  select {
+    @apply bg-background border border-input rounded-md px-3 py-2 text-sm
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50
+    disabled:opacity-50 disabled:cursor-not-allowed;
   }
 }
 
@@ -104,10 +122,64 @@
   }
 
   .main-content {
-    @apply container py-8 md:py-12;
+    @apply container py-8 md:py-12 space-y-8;
   }
 
   .section {
-    @apply py-12 md:py-16 lg:py-20;
+    @apply py-12 md:py-16 lg:py-20 space-y-8;
+  }
+
+  .card {
+    @apply bg-card rounded-lg border shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+
+  .form-group {
+    @apply space-y-2;
+  }
+
+  .form-label {
+    @apply text-sm font-medium text-foreground;
+  }
+
+  .form-input {
+    @apply w-full;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+  }
+
+  .btn-outline {
+    @apply border border-input bg-background hover:bg-accent hover:text-accent-foreground;
+  }
+
+  .btn-ghost {
+    @apply hover:bg-accent hover:text-accent-foreground;
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors
+    focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+
+  .badge-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/80;
+  }
+
+  .badge-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+  }
+
+  .badge-outline {
+    @apply text-foreground border-border hover:bg-accent hover:text-accent-foreground;
   }
 }

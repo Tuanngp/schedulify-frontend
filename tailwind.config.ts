@@ -19,13 +19,13 @@ const config: Config = {
       colors: {
         // Brand colors
         primary: {
-          DEFAULT: "#2563EB",
+          DEFAULT: "#3B82F6",
           50: "#EFF6FF",
           100: "#DBEAFE",
           200: "#BFDBFE",
           300: "#93C5FD",
           400: "#60A5FA",
-          500: "#2563EB",
+          500: "#3B82F6",
           600: "#2563EB",
           700: "#1D4ED8",
           800: "#1E40AF",
@@ -45,13 +45,13 @@ const config: Config = {
           900: "#064E3B",
         },
         accent: {
-          DEFAULT: "#7C3AED",
+          DEFAULT: "#8B5CF6",
           50: "#F5F3FF",
           100: "#EDE9FE",
           200: "#DDD6FE",
           300: "#C4B5FD",
           400: "#A78BFA",
-          500: "#7C3AED",
+          500: "#8B5CF6",
           600: "#7C3AED",
           700: "#6D28D9",
           800: "#5B21B6",
@@ -60,21 +60,41 @@ const config: Config = {
         // Semantic colors
         success: {
           DEFAULT: "#10B981",
+          50: "#ECFDF5",
+          100: "#D1FAE5",
           background: "#ECFDF5",
         },
         warning: {
           DEFAULT: "#F59E0B",
+          50: "#FFFBEB",
+          100: "#FEF3C7",
           background: "#FFFBEB",
         },
         error: {
           DEFAULT: "#EF4444",
+          50: "#FEF2F2",
+          100: "#FEE2E2",
           background: "#FEF2F2",
         },
         info: {
           DEFAULT: "#3B82F6",
+          50: "#EFF6FF",
+          100: "#DBEAFE",
           background: "#EFF6FF",
         },
         // Neutral colors
+        gray: {
+          50: "#F9FAFB",
+          100: "#F3F4F6",
+          200: "#E5E7EB",
+          300: "#D1D5DB",
+          400: "#9CA3AF",
+          500: "#6B7280",
+          600: "#4B5563",
+          700: "#374151",
+          800: "#1F2937",
+          900: "#111827",
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: "hsl(var(--card))",

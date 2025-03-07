@@ -23,6 +23,9 @@ interface TooltipState {
   post: Post | null;
 }
 
+// Định nghĩa mảng các nền tảng được hỗ trợ
+const SUPPORTED_PLATFORMS: Platform[] = ['facebook', 'instagram', 'tiktok', 'zalo'];
+
 const CalendarView: React.FC<CalendarViewProps> = ({ posts, onPostUpdate, onPostCreate }) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
@@ -102,7 +105,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ posts, onPostUpdate, onPost
       <div className="mb-4 flex items-center justify-between">
         <div className="flex space-x-2">
           {/* Platform filters */}
-          {Object.values(Platform).map((platform) => (
+          {SUPPORTED_PLATFORMS.map((platform) => (
             <button
               key={platform}
               className={`px-3 py-1 rounded ${
@@ -115,7 +118,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ posts, onPostUpdate, onPost
                   : [...prev.platforms, platform]
               }))}
             >
-              {platform}
+              {platform.charAt(0).toUpperCase() + platform.slice(1)}
             </button>
           ))}
         </div>
@@ -180,7 +183,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ posts, onPostUpdate, onPost
           }}
         >
           <h4>{tooltip.post.title}</h4>
-          <p>Platform: {tooltip.post.platform}</p>
+          <p>Platform: {tooltip.post.platform.charAt(0).toUpperCase() + tooltip.post.platform.slice(1)}</p>
           <p>Status: {tooltip.post.status}</p>
           <p>Date: {format(new Date(tooltip.post.scheduledDate), 'PPp')}</p>
           {tooltip.post.tags && tooltip.post.tags.length > 0 && (

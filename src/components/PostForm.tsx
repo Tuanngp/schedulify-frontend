@@ -13,7 +13,7 @@ const PostForm: React.FC<PostFormProps> = ({ post, initialDate, onSubmit, onCanc
   const [formData, setFormData] = useState<Partial<Post>>({
     title: '',
     content: '',
-    platform: Platform.Facebook,
+    platform: 'facebook',
     status: PostStatus.Draft,
     scheduledDate: initialDate || new Date(),
     images: [],
@@ -30,6 +30,8 @@ const PostForm: React.FC<PostFormProps> = ({ post, initialDate, onSubmit, onCanc
     e.preventDefault();
     onSubmit(formData);
   };
+
+  const SUPPORTED_PLATFORMS: Platform[] = ['facebook', 'instagram', 'tiktok', 'zalo'];
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -62,7 +64,7 @@ const PostForm: React.FC<PostFormProps> = ({ post, initialDate, onSubmit, onCanc
           onChange={(e) => setFormData({ ...formData, platform: e.target.value as Platform })}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
         >
-          {Object.values(Platform).map((platform) => (
+          {Object.values(SUPPORTED_PLATFORMS).map((platform) => (
             <option key={platform} value={platform}>
               {platform}
             </option>

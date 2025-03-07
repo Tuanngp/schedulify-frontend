@@ -1,8 +1,5 @@
 import * as React from "react";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { LayoutGrid, Calendar, BarChart3, Settings, Menu } from "lucide-react";
 
 interface MainLayoutProps {
   children: React.ReactNode;

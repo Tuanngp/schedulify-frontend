@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useRef } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -5,9 +7,8 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import listPlugin from '@fullcalendar/list';
 import { format } from 'date-fns';
-import { Dialog } from '@headlessui/react';
 import { Post, Platform, PostStatus } from '@/types/post';
-import PostForm from './PostForm';
+import CreatePostModal from './post/CreatePostModal';
 import '../styles/calendar.css';
 
 interface CalendarViewProps {
@@ -91,11 +92,11 @@ const CalendarView: React.FC<CalendarViewProps> = ({ posts, onPostUpdate, onPost
     ];
   };
 
-  const handleFormSubmit = (postData: Partial<Post>) => {
+  const handleFormSubmit = (postData: Post) => {
     if (selectedPost) {
-      onPostUpdate({ ...selectedPost, ...postData } as Post);
+      onPostUpdate(postData);
     } else {
-      onPostCreate(postData as Post);
+      onPostCreate(postData);
     }
     setIsModalOpen(false);
   };
@@ -192,26 +193,13 @@ const CalendarView: React.FC<CalendarViewProps> = ({ posts, onPostUpdate, onPost
         </div>
       )}
 
-      <Dialog
-        open={isModalOpen}
+      <CreatePostModal
+        isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        className="fixed inset-0 z-10 overflow-y-auto"
-      >
-        <div className="flex items-center justify-center min-h-screen">
-          <div className="fixed inset-0 bg-black opacity-30" />
-          <div className="relative bg-white rounded-lg p-8 max-w-lg w-full mx-4">
-            <Dialog.Title className="text-lg font-medium mb-4">
-              {selectedPost ? 'Edit Post' : 'Create New Post'}
-            </Dialog.Title>
-            <PostForm
-              post={selectedPost || undefined}
-              initialDate={selectedDate || undefined}
-              onSubmit={handleFormSubmit}
-              onCancel={() => setIsModalOpen(false)}
-            />
-          </div>
-        </div>
-      </Dialog>
+        onSubmit={handleFormSubmit}
+        initialDate={selectedDate || undefined}
+        post={selectedPost || undefined}
+      />
     </div>
   );
 };

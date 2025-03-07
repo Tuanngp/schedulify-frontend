@@ -12,12 +12,32 @@ import {
 } from "lucide-react";
 import { format } from "date-fns";
 import { vi } from "date-fns/locale";
+import React from "react";
 
 const platformIcons = {
   facebook: Facebook,
   instagram: Instagram,
   tiktok: Music,
   zalo: MessageCircle,
+} as const;
+
+type FacebookOptions = {
+  privacy: "public" | "friends" | "private";
+  location?: string;
+};
+
+type InstagramOptions = {
+  hashtags: string[];
+  firstComment?: string;
+};
+
+type TiktokOptions = {
+  hashtags: string[];
+  sound?: string;
+};
+
+type ZaloOptions = {
+  // Add Zalo specific options here
 };
 
 export default function PostPreview() {
@@ -30,6 +50,18 @@ export default function PostPreview() {
     scheduledAt,
     timezone,
   } = watch();
+
+  const isFacebookOptions = (platform: Platform, options: any): options is FacebookOptions => {
+    return platform === 'facebook';
+  };
+
+  const isInstagramOptions = (platform: Platform, options: any): options is InstagramOptions => {
+    return platform === 'instagram';
+  };
+
+  const isTiktokOptions = (platform: Platform, options: any): options is TiktokOptions => {
+    return platform === 'tiktok';
+  };
 
   const renderPlatformPreview = (platform: Platform) => {
     const Icon = platformIcons[platform];
@@ -82,7 +114,7 @@ export default function PostPreview() {
           />
 
           {/* Platform-specific Options */}
-          {platform === "facebook" && options && (
+          {platform === "facebook" && isFacebookOptions(platform, options) && (
             <div className="text-sm text-muted-foreground space-y-1">
               <div className="flex items-center space-x-1">
                 <MapPin className="h-4 w-4" />
@@ -100,9 +132,9 @@ export default function PostPreview() {
           )}
 
           {(platform === "instagram" || platform === "tiktok") &&
-            options?.hashtags && (
+            ((isInstagramOptions(platform, options) || isTiktokOptions(platform, options)) && options.hashtags) && (
               <div className="flex flex-wrap gap-2">
-                {options.hashtags.map((tag, index) => (
+                {options.hashtags.map((tag: string, index: number) => (
                   <div
                     key={index}
                     className="flex items-center space-x-1 text-sm text-blue-500"
@@ -114,13 +146,13 @@ export default function PostPreview() {
               </div>
             )}
 
-          {platform === "instagram" && options?.firstComment && (
+          {platform === "instagram" && isInstagramOptions(platform, options) && options.firstComment && (
             <div className="text-sm text-muted-foreground">
               Bình luận đầu tiên: {options.firstComment}
             </div>
           )}
 
-          {platform === "tiktok" && options?.sound && (
+          {platform === "tiktok" && isTiktokOptions(platform, options) && options.sound && (
             <div className="flex items-center space-x-1 text-sm text-muted-foreground">
               <Music className="h-4 w-4" />
               <span>{options.sound}</span>
@@ -139,9 +171,9 @@ export default function PostPreview() {
         <TabsList className="w-full justify-start">
           {platforms.map((platform) => (
             <TabsTrigger key={platform} value={platform} className="space-x-2">
-              {platformIcons[platform] && (
-                <platformIcons[platform] className="h-4 w-4" />
-              )}
+              {platformIcons[platform] && React.createElement(platformIcons[platform], {
+                className: "h-4 w-4"
+              })}
               <span>
                 {platform.charAt(0).toUpperCase() + platform.slice(1)}
               </span>

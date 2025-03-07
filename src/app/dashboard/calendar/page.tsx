@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import CreatePostModal from '@/components/post/CreatePostModal';
 
 export default function CalendarPage() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -23,6 +24,8 @@ export default function CalendarPage() {
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState('');
   const [activeTab, setActiveTab] = useState('calendar');
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [selectedPost, setSelectedPost] = useState<Post | null>(null);
 
   useEffect(() => {
     // TODO: Fetch posts from API
@@ -171,7 +174,13 @@ export default function CalendarPage() {
               />
             </div>
             
-            <Button className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full flex items-center gap-1 shadow-sm">
+            <Button 
+              className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full flex items-center gap-1 shadow-sm"
+              onClick={() => {
+                setSelectedPost(null);
+                setIsCreateModalOpen(true);
+              }}
+            >
               <PlusCircle className="h-4 w-4" />
               <span className="hidden sm:inline">Tạo bài viết</span>
             </Button>
@@ -341,7 +350,7 @@ export default function CalendarPage() {
                           </td>
                           <td className="px-4 py-4 whitespace-nowrap">
                             <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getPlatformColor(post.platform)}`}>
-                              {post.platform}
+                              {post.platform.charAt(0).toUpperCase() + post.platform.slice(1)}
                             </span>
                           </td>
                           <td className="px-4 py-4 whitespace-nowrap">
@@ -358,7 +367,10 @@ export default function CalendarPage() {
                                 variant="outline"
                                 size="sm"
                                 className="border-gray-200 hover:bg-gray-50 text-gray-700"
-                                onClick={() => handlePostUpdate(post)}
+                                onClick={() => {
+                                  setSelectedPost(post);
+                                  setIsCreateModalOpen(true);
+                                }}
                               >
                                 <Settings className="h-4 w-4" />
                               </Button>
@@ -387,6 +399,16 @@ export default function CalendarPage() {
           </div>
         </div>
       </div>
+
+      <CreatePostModal
+        isOpen={isCreateModalOpen}
+        onClose={() => {
+          setIsCreateModalOpen(false);
+          setSelectedPost(null);
+        }}
+        onSubmit={selectedPost ? handlePostUpdate : handlePostCreate}
+        post={selectedPost || undefined}
+      />
     </div>
   );
 }

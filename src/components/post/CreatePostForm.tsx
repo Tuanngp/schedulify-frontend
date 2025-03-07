@@ -18,36 +18,35 @@ const steps = [
   { id: "preview", title: "Xem trước", component: PostPreview },
 ];
 
-export default function CreatePostForm() {
+interface CreatePostFormProps {
+  initialData?: PostFormData;
+  initialDate?: Date;
+  onSubmit: (data: PostFormData) => Promise<void>;
+  onCancel: () => void;
+}
+
+export default function CreatePostForm({
+  initialData,
+  initialDate,
+  onSubmit,
+  onCancel
+}: CreatePostFormProps) {
   const [currentStep, setCurrentStep] = useState(0);
 
   const methods = useForm<PostFormData>({
     resolver: zodResolver(postFormSchema),
     defaultValues: {
-      content: "",
-      media: [],
-      platforms: [],
-      timezone: "Asia/Ho_Chi_Minh",
-      platformOptions: {},
-      isDraft: false,
+      content: initialData?.content || "",
+      media: initialData?.media || [],
+      platforms: initialData?.platforms || [],
+      timezone: initialData?.timezone || "Asia/Ho_Chi_Minh",
+      platformOptions: initialData?.platformOptions || {},
+      isDraft: initialData?.isDraft || false,
+      scheduledAt: initialData?.scheduledAt || initialDate,
     },
   });
 
   const { handleSubmit, formState: { isSubmitting } } = methods;
-
-  const onSubmit = async (data: PostFormData) => {
-    try {
-      if (data.isDraft) {
-        // Lưu bản nháp
-        console.log("Saving draft:", data);
-      } else {
-        // Đăng bài
-        console.log("Publishing post:", data);
-      }
-    } catch (error) {
-      console.error("Error submitting post:", error);
-    }
-  };
 
   const CurrentStepComponent = steps[currentStep].component;
 
@@ -77,20 +76,32 @@ export default function CreatePostForm() {
         </div>
 
         <div className="flex justify-between mt-8">
-          <Button
-            type="button"
-            variant="outline"
-            onClick={prevStep}
-            disabled={currentStep === 0}
-          >
-            Quay lại
-          </Button>
+          {currentStep === 0 ? (
+            <Button
+              type="button"
+              variant="outline"
+              onClick={onCancel}
+            >
+              Hủy
+            </Button>
+          ) : (
+            <Button
+              type="button"
+              variant="outline"
+              onClick={prevStep}
+            >
+              Quay lại
+            </Button>
+          )}
 
           <div className="space-x-4">
             <Button
               type="button"
               variant="outline"
-              onClick={() => methods.setValue("isDraft", true)}
+              onClick={() => {
+                methods.setValue("isDraft", true);
+                methods.handleSubmit(onSubmit)();
+              }}
               disabled={isSubmitting}
             >
               Lưu nháp
@@ -98,7 +109,7 @@ export default function CreatePostForm() {
 
             {currentStep === steps.length - 1 ? (
               <Button type="submit" disabled={isSubmitting}>
-                Đăng bài
+                {initialData ? 'Cập nhật' : 'Đăng bài'}
               </Button>
             ) : (
               <Button type="button" onClick={nextStep}>

@@ -1,13 +1,37 @@
+import { prisma } from "@/lib/prisma"
 import { PrismaAdapter } from "@auth/prisma-adapter"
+import bcrypt from "bcryptjs"
 import { NextAuthOptions } from "next-auth"
 import NextAuth from "next-auth/next"
-import GoogleProvider from "next-auth/providers/google"
-import FacebookProvider from "next-auth/providers/facebook"
 import CredentialsProvider from "next-auth/providers/credentials"
-import { prisma } from "@/lib/prisma"
-import bcrypt from "bcryptjs"
+import FacebookProvider from "next-auth/providers/facebook"
+import GoogleProvider from "next-auth/providers/google"
 
-export const authOptions: NextAuthOptions = {
+type UserWithRole = {
+  id: string;
+  email: string;
+  role: string;
+  hashedPassword?: string;
+}
+
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: string;
+      email: string;
+      role: string;
+    }
+  }
+}
+
+declare module "next-auth/jwt" {
+  interface JWT {
+    id: string;
+    role: string;
+  }
+}
+
+const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
@@ -63,10 +87,11 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
+        const userWithRole = user as UserWithRole;
         return {
           ...token,
-          role: user.role,
-          id: user.id
+          role: userWithRole.role,
+          id: userWithRole.id
         }
       }
       return token
@@ -85,4 +110,5 @@ export const authOptions: NextAuthOptions = {
 }
 
 const handler = NextAuth(authOptions)
-export { handler as GET, handler as POST } 
+
+export { handler as GET, handler as POST }

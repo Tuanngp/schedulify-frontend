@@ -1,26 +1,26 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import {
-  LineChart,
-  Line,
-  BarChart,
-  Bar,
-  PieChart,
-  Pie,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  AreaChart,
-  Area
-} from 'recharts';
+import { useEffect, useState } from 'react';
 import { DateRangePicker, RangeKeyDict } from 'react-date-range';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
-import { DateRange, Platform, PostType, PerformanceData, PlatformData, TopContent } from './types';
+import {
+  Area,
+  AreaChart,
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Legend,
+  Line,
+  LineChart,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis
+} from 'recharts';
+import { DateRange, PerformanceData, Platform, PlatformData, PostType, TopContent } from './types';
 
 export default function AnalyticsDashboard() {
   const [dateRange, setDateRange] = useState<DateRange>({

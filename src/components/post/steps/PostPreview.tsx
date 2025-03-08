@@ -1,18 +1,18 @@
-import { useFormContext } from "react-hook-form";
-import { PostFormData, Platform } from "@/types/post";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Facebook,
-  Instagram,
-  MessageCircle,
-  Music,
-  MapPin,
-  Hash,
-} from "lucide-react";
+import { Platform, PostFormData } from "@/types/post";
 import { format } from "date-fns";
 import { vi } from "date-fns/locale";
+import {
+  Facebook,
+  Hash,
+  Instagram,
+  MapPin,
+  MessageCircle,
+  Music,
+} from "lucide-react";
 import React from "react";
+import { useFormContext } from "react-hook-form";
 
 const platformIcons = {
   facebook: Facebook,

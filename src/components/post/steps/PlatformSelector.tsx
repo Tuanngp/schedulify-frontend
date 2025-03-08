@@ -1,18 +1,18 @@
-import { useFormContext } from "react-hook-form";
-import { Platform, PostFormData } from "@/types/post";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Platform, PostFormData } from "@/types/post";
 import {
   Facebook,
-  Instagram,
-  MessageCircle,
   Hash,
+  Instagram,
   MapPin,
+  MessageCircle,
   Music,
 } from "lucide-react";
+import { useFormContext } from "react-hook-form";
 
 const platforms = [
   {
@@ -68,7 +68,7 @@ export default function PlatformSelector() {
       setValue("platformOptions", rest);
     } else {
       current.add(platform);
-      setValue(`platformOptions.${platform}`, {});
+      setValue(`platformOptions.${platform}`, { privacy: "friends" });
     }
     setValue("platforms", Array.from(current));
   };
@@ -109,7 +109,7 @@ export default function PlatformSelector() {
                       <RadioGroup
                         defaultValue={platformOptions.facebook?.privacy}
                         onValueChange={(value) =>
-                          setValue("platformOptions.facebook.privacy", value)
+                          setValue("platformOptions.facebook.privacy", "public")
                         }
                       >
                         {platform.options.privacy.map((option) => (

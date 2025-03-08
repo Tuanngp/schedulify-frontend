@@ -1,11 +1,11 @@
-import { useCallback } from "react";
-import { useFormContext } from "react-hook-form";
-import { useDropzone } from "react-dropzone";
-import { PostFormData, PostMedia } from "@/types/post";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { PostFormData, PostMedia } from "@/types/post";
 import { Trash2, Upload } from "lucide-react";
 import Image from "next/image";
+import { useCallback } from "react";
+import { useDropzone } from "react-dropzone";
+import { useFormContext } from "react-hook-form";
 
 export default function MediaUploader() {
   const { setValue, watch } = useFormContext<PostFormData>();

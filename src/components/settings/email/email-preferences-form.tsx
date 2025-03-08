@@ -1,8 +1,5 @@
 
 "use client"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -10,11 +7,13 @@ import {
   FormDescription,
   FormField,
   FormItem,
-  FormLabel,
-  FormMessage,
+  FormLabel
 } from "@/components/ui/form"
 import { Switch } from "@/components/ui/switch"
 import { toast } from "@/components/ui/use-toast"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import * as z from "zod"
 
 const emailPreferencesSchema = z.object({
   marketing: z.object({

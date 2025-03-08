@@ -1,17 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { Slider } from '@/components/ui/slider';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -20,6 +10,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import {
   Pagination,
   PaginationContent,
@@ -28,7 +21,13 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
-import { Star, MessageSquare, Heart, Filter, Search, Sliders } from 'lucide-react';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import {
   Sheet,
   SheetContent,
@@ -37,14 +36,15 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
+import { Slider } from '@/components/ui/slider';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Label } from '@/components/ui/label';
+import { Filter, Heart, Search, Star } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 interface Creator {
   id: string;
@@ -763,7 +763,7 @@ export default function MarketplacePage() {
                 </div>
                 <h3 className="text-2xl font-semibold mb-3 text-gray-900">No creators found</h3>
                 <p className="text-gray-500 mb-6 text-lg">
-                  We couldn't find any creators matching your filters. Try adjusting your search criteria.
+                  We couldn&apos;t find any creators matching your filters. Try adjusting your search criteria.
                 </p>
                 <Button 
                   onClick={resetFilters}

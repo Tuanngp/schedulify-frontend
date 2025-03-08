@@ -1,15 +1,15 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
-import FullCalendar from '@fullcalendar/react';
+import { Platform, Post, PostStatus } from '@/types/post';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import listPlugin from '@fullcalendar/list';
+import FullCalendar from '@fullcalendar/react';
+import timeGridPlugin from '@fullcalendar/timegrid';
 import { format } from 'date-fns';
-import { Post, Platform, PostStatus } from '@/types/post';
-import CreatePostModal from './post/CreatePostModal';
+import React, { useRef, useState } from 'react';
 import '../styles/calendar.css';
+import CreatePostModal from './post/CreatePostModal';
 
 interface CalendarViewProps {
   posts: Post[];
@@ -110,7 +110,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ posts, onPostUpdate, onPost
             <button
               key={platform}
               className={`px-3 py-1 rounded ${
-                filters.platforms.includes(platform) ? 'bg-blue-500 text-white' : 'bg-gray-200'
+                filters.platforms.includes(platform) ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'
               }`}
               onClick={() => setFilters(prev => ({
                 ...prev,
@@ -130,7 +130,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ posts, onPostUpdate, onPost
             <button
               key={status}
               className={`px-3 py-1 rounded ${
-                filters.status.includes(status) ? 'bg-green-500 text-white' : 'bg-gray-200'
+                filters.status.includes(status) ? 'bg-green-500 text-white' : 'bg-gray-200 text-black'
               }`}
               onClick={() => setFilters(prev => ({
                 ...prev,

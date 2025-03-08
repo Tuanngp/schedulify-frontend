@@ -1,12 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Search, Download, Trash2 } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
+import { Download, Search, Trash2 } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 interface ContentHistoryItem {
   id: string;

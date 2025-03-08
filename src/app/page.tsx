@@ -1,36 +1,30 @@
 "use client";
 
-import { useAuth } from "@/hooks/use-auth";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { MarketingLayout } from "@/components/layouts/marketing-layout";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/use-auth";
+import { motion } from "framer-motion";
 import {
-  Calendar,
+  ArrowRight,
   BarChart2,
-  MessageSquare,
-  Zap,
+  Calendar,
+  CheckCircle2,
   Clock,
-  TrendingUp,
   Facebook,
   Instagram,
-  Twitter,
   Linkedin,
-  Youtube,
-  ArrowRight,
-  Star,
-  CheckCircle2,
+  MessageSquare,
   Play,
+  Star,
+  TrendingUp,
+  Twitter,
+  Youtube,
+  Zap,
 } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { motion } from "framer-motion";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const features = [
   {

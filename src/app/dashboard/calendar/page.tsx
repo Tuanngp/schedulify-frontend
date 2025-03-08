@@ -1,17 +1,17 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { useToast } from '@/components/ui/use-toast';
 import CalendarView from '@/components/CalendarView';
-import { Post, Platform, PostStatus } from '@/types/post';
-import { Bell, Calendar, Filter, PlusCircle, Search, Settings, TrendingUp } from 'lucide-react';
-import { format } from 'date-fns';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import CreatePostModal from '@/components/post/CreatePostModal';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import CreatePostModal from '@/components/post/CreatePostModal';
+import { useToast } from '@/components/ui/use-toast';
+import { Platform, Post, PostStatus } from '@/types/post';
+import { format } from 'date-fns';
+import { Bell, Calendar, Filter, PlusCircle, Search, Settings, TrendingUp } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 export default function CalendarPage() {
   const [posts, setPosts] = useState<Post[]>([]);

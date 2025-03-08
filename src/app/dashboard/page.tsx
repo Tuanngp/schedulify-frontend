@@ -1,6 +1,8 @@
 "use client";
 
 import { MainLayout } from "@/components/layouts/main-layout";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -21,34 +23,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Plus,
-  MoreVertical,
-  Calendar,
-  Heart,
-  Link as LinkIcon,
-  TrendingUp,
-  ArrowUpRight,
-  MessageCircle,
-  Users,
-  Filter,
-  Search,
-  Bell,
-  ChevronLeft,
-  ChevronRight,
-  Facebook,
-  Instagram,
-  Twitter,
-  CheckCircle2,
-  XCircle,
-  BarChart,
-  PieChart,
-  LineChart,
-} from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Select,
   SelectContent,
@@ -64,6 +38,28 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  ArrowUpRight,
+  BarChart,
+  Calendar,
+  CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
+  Facebook,
+  Filter,
+  Heart,
+  Instagram,
+  Link as LinkIcon,
+  MessageCircle,
+  MoreVertical,
+  Plus,
+  Search,
+  TrendingUp,
+  Twitter,
+  XCircle
+} from "lucide-react";
 
 export default function DashboardPage() {
   return (

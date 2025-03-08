@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { MainLayout } from "@/components/layouts/main-layout";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -21,35 +22,34 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import { AnimatePresence, motion } from "framer-motion";
 import {
-  Plus,
+  ArrowDownRight,
+  ArrowUpRight,
+  BarChart3,
+  CheckCircle,
+  ChevronRight,
+  Eye,
+  Gauge,
+  History,
+  Info,
+  Key,
+  Loader2,
+  Lock,
   MoreVertical,
+  PieChart,
+  Plus,
   RefreshCw,
   Settings,
-  ChevronRight,
-  CheckCircle,
-  Lock,
   Shield,
-  Key,
-  Gauge,
   Users,
-  Loader2,
-  Info,
-  PieChart,
-  Eye,
-  ArrowUpRight,
-  ArrowDownRight,
-  BarChart3,
-  History,
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "@/lib/utils";
-import { Separator } from "@/components/ui/separator";
+import { useEffect, useState } from "react";
 
 const platforms = [
   {
@@ -670,15 +670,15 @@ export default function AccountsPage() {
         onValueChange={setActiveTab}
       >
         <div className="flex items-center justify-between">
-          <TabsList className="inline-flex h-10">
-            <TabsTrigger value="all" className="min-w-[100px] px-6">
+          <TabsList className="inline-flex w-full max-w-2xl rounded-lg bg-gray-100/50 p-1 space-x-1">
+            <TabsTrigger value="all" className="flex-1 rounded-md px-6 py-2.5 transition-all data-[state=active]:bg-white data-[state=active]:shadow-sm">
               Tất cả
             </TabsTrigger>
             {platforms.map((platform) => (
               <TabsTrigger
                 key={platform.id}
                 value={platform.id}
-                className="min-w-[100px] px-6"
+                className="flex-1 rounded-md px-6 py-2.5 transition-all data-[state=active]:bg-white data-[state=active]:shadow-sm"
               >
                 <div className="flex items-center gap-2">
                   <img src={platform.icon} alt={platform.name} className="h-4 w-4" />
@@ -738,7 +738,7 @@ export default function AccountsPage() {
                       <div className="text-sm font-medium text-muted-foreground">
                         Tổng số tài khoản
                       </div>
-                      <div className="rounded-full bg-primary p-1.5">
+                      <div className="rounded-full p-1.5">
                         <Users className="h-4 w-4 text-primary" />
                       </div>
                     </div>
@@ -755,7 +755,7 @@ export default function AccountsPage() {
                       <div className="text-sm font-medium text-muted-foreground">
                         Tổng số followers
                       </div>
-                      <div className="rounded-full bg-primary p-1.5">
+                      <div className="rounded-full p-1.5">
                         <Users className="h-4 w-4 text-primary" />
                       </div>
                     </div>
@@ -772,7 +772,7 @@ export default function AccountsPage() {
                       <div className="text-sm font-medium text-muted-foreground">
                         Tỷ lệ tương tác trung bình
                       </div>
-                      <div className="rounded-full bg-primary p-1.5">
+                      <div className="rounded-full p-1.5">
                         <BarChart3 className="h-4 w-4 text-primary" />
                       </div>
                     </div>

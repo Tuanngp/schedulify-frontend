@@ -1,12 +1,12 @@
 "use client"
 
-import { useState } from "react"
-import { signIn } from "next-auth/react"
-import { useRouter } from "next/navigation"
-import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod"
+import { signIn } from "next-auth/react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
+import { useForm } from "react-hook-form"
+import * as z from "zod"
 
 const loginSchema = z.object({
   email: z.string().email("Email không hợp lệ"),
@@ -46,7 +46,7 @@ export function LoginForm() {
 
       router.push("/dashboard")
     } catch (error) {
-      setError("Đã có lỗi xảy ra")
+      setError("Đã có lỗi xảy ra" + error)
     } finally {
       setIsLoading(false)
     }
